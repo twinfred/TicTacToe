@@ -2,9 +2,11 @@ import { PropsWithChildren } from "react";
 
 export const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div>
-      <div className="bg-slate-600">Tic Tac Toe</div>
-      {children}
-    </div>
+    <>
+      <div className="bg-slate-600 text-white font-bold text-xl text-center p-8 mb-4">
+        Tic Tac Toe
+      </div>
+      <main>{children}</main>
+    </>
   );
 };
