@@ -12,7 +12,7 @@ export enum Player {
   O = "O",
 }
 
-interface GameContextType {
+export interface GameContextType {
   currentPlayer: Player;
   setCurrentPlayer?: Dispatch<SetStateAction<Player>>;
   spaces: (Player | null)[];
@@ -34,29 +34,29 @@ interface SpacesState {
   spaces: (Player | null)[];
 }
 
-export enum SpaceActionType {
-  FILL_SPACE,
-  RESET,
+export enum SpacesActionType {
+  SELECT_SPACE,
+  RESET_GAME,
 }
 
 interface SpacesAction {
   player: Player;
   spaceIndex: number;
-  type: SpaceActionType;
+  type: SpacesActionType;
 }
 
 const spacesReducer = (state: SpacesState, action: SpacesAction) => {
   const { type, player, spaceIndex } = action;
   console.log({ state, action });
   switch (type) {
-    case SpaceActionType.FILL_SPACE:
+    case SpacesActionType.SELECT_SPACE:
       if (!state.spaces[spaceIndex] && spaceIndex < 9) {
         const newSpaces = [...state.spaces];
         newSpaces[spaceIndex] = player;
         return { spaces: newSpaces };
       }
       return state;
-    case SpaceActionType.RESET:
+    case SpacesActionType.RESET_GAME:
       return { spaces: gameContextDefaultValues.spaces };
     default:
       return state;
