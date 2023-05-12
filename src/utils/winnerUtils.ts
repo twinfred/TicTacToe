@@ -14,8 +14,12 @@ const winningIndexes = [
 ];
 
 export const getWinnerIndexes = (
+  currentPlayer: Player,
+  selectedSpace: number,
   spaces: (Player | null)[]
 ): number[] | null => {
+  spaces[selectedSpace] = currentPlayer;
+
   for (const indexes of winningIndexes) {
     const [a, b, c] = indexes;
     const valueA = spaces[a];
