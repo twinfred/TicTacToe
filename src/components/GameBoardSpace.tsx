@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import { useGame } from "../hooks/useGame";
-import { Player, SpaceActionType } from "../context/GameContext";
+import { Player, SpacesActionType } from "../context/GameContext";
 
 interface GameBoardSpaceProps {
   index: number;
@@ -16,7 +16,7 @@ export const GameBoardSpace = ({
     console.log({ index, spacesDispatch });
     if (!spaces[index]) {
       spacesDispatch?.({
-        type: SpaceActionType.FILL_SPACE,
+        type: SpacesActionType.SELECT_SPACE,
         spaceIndex: index,
         player: currentPlayer,
       });
