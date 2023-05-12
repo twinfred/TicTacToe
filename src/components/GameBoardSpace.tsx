@@ -38,7 +38,7 @@ export const GameBoardSpace = ({
 
   return (
     <button
-      className="aspect-square bg-slate-200 text-xl bold"
+      className="aspect-square bg-slate-200 text-5xl bold"
       onClick={handleClick}
     >
       {children}

@@ -10,8 +10,10 @@ export const WinnerBanner = () => {
       role="alert"
       aria-live="polite"
     >
-      <p>The winner is Player {winner}</p>
-      <p className="mb-4">Reset the game to play again:</p>
+      <p>The winner is Player {winner}!</p>
+      <p className="mb-4">
+        Reset the game to play again. The winning player starts the next game.
+      </p>
       <ResetButton />
     </div>
   ) : null;
