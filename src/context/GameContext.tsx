@@ -40,9 +40,9 @@ export enum SpacesActionType {
 }
 
 interface SpacesAction {
-  player: Player;
-  spaceIndex: number;
-  type: SpacesActionType;
+  player?: Player;
+  spaceIndex?: number;
+  type?: SpacesActionType;
 }
 
 const spacesReducer = (state: SpacesState, action: SpacesAction) => {
@@ -50,6 +50,8 @@ const spacesReducer = (state: SpacesState, action: SpacesAction) => {
   console.log({ state, action });
   switch (type) {
     case SpacesActionType.SELECT_SPACE:
+      if (!spaceIndex || !player) return state;
+
       if (!state.spaces[spaceIndex] && spaceIndex < 9) {
         const newSpaces = [...state.spaces];
         newSpaces[spaceIndex] = player;
@@ -57,7 +59,7 @@ const spacesReducer = (state: SpacesState, action: SpacesAction) => {
       }
       return state;
     case SpacesActionType.RESET_GAME:
-      return { spaces: gameContextDefaultValues.spaces };
+      return { spaces: new Array(9).fill(null) };
     default:
       return state;
   }
@@ -70,6 +72,7 @@ export const GameProvider = ({ children }: PropsWithChildren) => {
   const [{ spaces }, spacesDispatch] = useReducer(spacesReducer, {
     spaces: gameContextDefaultValues.spaces,
   });
+  console.log("Context", { spaces });
   const [winner, setWinner] = useState<Player | undefined>();
 
   const value = {
